@@ -11,6 +11,7 @@ class TicTacToe {
     this.board = [];
     this.playerOneScore = 0;
     this.playerTwoScore = 0;
+    this.roundCount = 0;
     this.gameButtons = document.getElementsByClassName('game-button');
 
     for (let i = 0; i < this.gameButtons.length; i += 1) {
@@ -31,6 +32,7 @@ class TicTacToe {
   gameStart() {
     this.playerOneScore = 0;
     this.playerTwoScore = 0;
+    this.roundCount = 1;
 
     this.clearBoard();
     this.playerTurn();
@@ -57,6 +59,46 @@ class TicTacToe {
     } else {
       this.currentTurn = 'x';
     }
+
+    const displayTurn = document.getElementById('game-display-turn');
+    if (this.playerAmount === 'two') {
+      if (this.currentTurn === 'x') {
+        if (this.playerOne === 'x') {
+          displayTurn.innerText = 'Player One\'s Turn';
+        } else {
+          displayTurn.innerText = 'Player Two\'s Turn';
+        }
+      } else if (this.currentTurn === 'o') {
+        if (this.playerOne === 'o') {
+          displayTurn.innerText = 'Player One\'s Turn';
+        } else {
+          displayTurn.innerText = 'Player Two\'s Turn';
+        }
+      }
+    } else if (this.playerAmount === 'one') {
+      if (this.playerOne === 'x') {
+        if (this.currentTurn === 'x') {
+          displayTurn.innerText = 'Your Turn';
+        } else {
+          displayTurn.innerText = 'Computer\'s Turn';
+        }
+      } else if (this.playerOne === 'o') {
+        if (this.currentTurn === 'x') {
+          displayTurn.innerText = 'Computer\'s Turn';
+        } else {
+          displayTurn.innerText = 'Your Turn';
+        }
+      }
+    }
+
+    displayTurn.classList.remove('slide-in');
+    displayTurn.classList.add('hidden');
+
+    setTimeout(() => {
+      displayTurn.classList.add('slide-in');
+      displayTurn.classList.remove('hidden');
+    }, 25);
+
     this.playerTurn();
   }
 
@@ -122,23 +164,39 @@ class TicTacToe {
   }
 
   newRound() {
-    console.log(this.currentTurn, 'winner');
     this.updateScores();
     this.clearBoard();
+
+    // take turns on who goes first
+    this.roundCount += 1;
+    if (this.roundCount % 2 === 0) {
+      this.currentTurn = 'x';
+    } else {
+      this.currentTurn = 'o';
+    }
+
     this.switchTurn();
   }
 
   updateScores() {
     const winner = this.currentTurn;
 
-    if (winner === 'x') {
-      if (this.playerOne === 'x') {
-        this.playerOneScore += 1;
-      } else {
-        this.playerTwoScore += 1;
+    if (this.playerAmount === 'two') {
+      if (winner === 'x') {
+        if (this.playerOne === 'x') {
+          this.playerOneScore += 1;
+        } else {
+          this.playerTwoScore += 1;
+        }
+      } else if (winner === 'o') {
+        if (this.playerOne === 'o') {
+          this.playerOneScore += 1;
+        } else {
+          this.playerTwoScore += 1;
+        }
       }
-    } else if (winner === 'o') {
-      if (this.playerOne === 'o') {
+    } else if (this.playerAmount === 'one') {
+      if (winner === 'x') {
         this.playerOneScore += 1;
       } else {
         this.playerTwoScore += 1;
@@ -170,7 +228,7 @@ const revealNextQueston = function (numPlayers) {
   if (numPlayers === 'one') {
     options.q2.innerText = 'Play as:';
   } else {
-    options.q2.innerText = 'Who goes first?';
+    options.q2.innerText = 'Player 1 will be?';
   }
 
   setTimeout(() => {
@@ -258,10 +316,12 @@ document.getElementById('start-game').addEventListener('click', () => {
     playerOne.innerText = 'Computer';
     playerTwo.innerText = 'Player One';
     playerTurn.innerText = 'Computer\'s Turn';
-  } else if (ticTacToe.playerAmount === 'two') {
+  } else if (ticTacToe.playerAmount === 'two' && ticTacToe.playerOne === 'x') {
     playerOne.innerText = 'Player One';
     playerTwo.innerText = 'Player Two';
     playerTurn.innerText = 'Player One\'s Turn';
+  } else {
+    playerTurn.innerText = 'Player Two\'s Turn';
   }
   options.openingScreen.classList.add('remove');
 
