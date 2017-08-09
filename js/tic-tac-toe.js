@@ -12,6 +12,7 @@ class TicTacToe {
     this.playerOneScore = 0;
     this.playerTwoScore = 0;
     this.roundCount = 0;
+    this.winner = '';
     this.gameButtons = document.getElementsByClassName('game-button');
 
     for (let i = 0; i < this.gameButtons.length; i += 1) {
@@ -112,7 +113,7 @@ class TicTacToe {
 
   checkForVictory(player) {
     const splitBoard = [[], [], []];
-    const board = this.board;
+    const board = this.board.map(value => value);
 
     for (let i = 0; i < board.length; i += 1) {
       if (board[i] === player) {
@@ -122,9 +123,9 @@ class TicTacToe {
       }
     }
 
-    splitBoard[0] = this.board.slice(0, 3);
-    splitBoard[1] = this.board.slice(3, 6);
-    splitBoard[2] = this.board.slice(6, 9);
+    splitBoard[0] = board.slice(0, 3);
+    splitBoard[1] = board.slice(3, 6);
+    splitBoard[2] = board.slice(6, 9);
 
     const column = [0, 0, 0];
     let diagOne = 0;
@@ -157,10 +158,53 @@ class TicTacToe {
     }
 
     if (this.winner === '') {
-      this.switchTurn();
+      this.checkForTies();
     } else {
       this.newRound();
     }
+  }
+
+  checkForTies() {
+    const boardString = this.board.join('');
+
+    if (boardString.length === 9) {
+      this.displayTie();
+    } else {
+      this.switchTurn();
+    }
+  }
+
+  displayTie() {
+    const tie = document.createElement('div');
+
+    tie.innerText = 'Tie!';
+    tie.id = 'remove-me';
+    tie.style.position = 'absolute';
+    tie.style.width = 'calc(100vw + 300px)';
+    tie.style.top = '47%';
+    tie.style.left = '44%';
+    tie.style.zIndex = '10';
+    tie.style.fontSize = '4em';
+
+    tie.classList.add('slide-prep');
+    tie.classList.add('hidden');
+
+    document.getElementById('game-board').appendChild(tie);
+
+    setTimeout(() => {
+      tie.classList.add('slide-in');
+      tie.classList.remove('hidden');
+    }, 5);
+
+    setTimeout(() => {
+      tie.classList.add('slide-out');
+    }, 1500);
+
+    setTimeout(() => {
+      document.getElementById('remove-me').remove();
+    }, 2000);
+
+    this.newRound();
   }
 
   newRound() {
@@ -179,32 +223,32 @@ class TicTacToe {
   }
 
   updateScores() {
-    const winner = this.currentTurn;
+    if (this.winner !== '') {
+      if (this.playerAmount === 'two') {
+        if (this.winner === 'x') {
+          if (this.playerOne === 'x') {
+            this.playerOneScore += 1;
+          } else {
+            this.playerTwoScore += 1;
+          }
+        } else if (this.winner === 'o') {
+          if (this.playerOne === 'o') {
+            this.playerOneScore += 1;
+          } else {
+            this.playerTwoScore += 1;
+          }
+        }
+      } else if (this.playerAmount === 'one') {
+        if (this.winner === 'x') {
+          this.playerOneScore += 1;
+        } else {
+          this.playerTwoScore += 1;
+        }
+      }
 
-    if (this.playerAmount === 'two') {
-      if (winner === 'x') {
-        if (this.playerOne === 'x') {
-          this.playerOneScore += 1;
-        } else {
-          this.playerTwoScore += 1;
-        }
-      } else if (winner === 'o') {
-        if (this.playerOne === 'o') {
-          this.playerOneScore += 1;
-        } else {
-          this.playerTwoScore += 1;
-        }
-      }
-    } else if (this.playerAmount === 'one') {
-      if (winner === 'x') {
-        this.playerOneScore += 1;
-      } else {
-        this.playerTwoScore += 1;
-      }
+      document.getElementById('player-one-score').innerText = this.playerOneScore;
+      document.getElementById('player-two-score').innerText = this.playerTwoScore;
     }
-
-    document.getElementById('player-one-score').innerText = this.playerOneScore;
-    document.getElementById('player-two-score').innerText = this.playerTwoScore;
   }
 }
 
@@ -306,7 +350,7 @@ document.getElementById('start-game').addEventListener('click', () => {
       gameButtons[i].disabled = false;
     }
     ticTacToe.gameStart();
-  }, 1000);
+  }, 600);
 
   if (ticTacToe.playerAmount === 'one' && ticTacToe.playerOne === 'x') {
     playerOne.innerText = 'Player One';
