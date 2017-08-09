@@ -6,6 +6,7 @@ class TicTacToe {
     this.playerTwo = '';
     this.currentTurn = 'x';
     this.turnControl = false;
+    this.computerTurnControl = false;
     this.computerDifficulty = '';
     this.winner = '';
     this.board = [];
@@ -13,6 +14,7 @@ class TicTacToe {
     this.playerTwoScore = 0;
     this.roundCount = 0;
     this.winner = '';
+    this.computerPlayer = '';
     this.gameButtons = document.getElementsByClassName('game-button');
 
     for (let i = 0; i < this.gameButtons.length; i += 1) {
@@ -40,14 +42,25 @@ class TicTacToe {
   }
 
   playerTurn() {
+    for (let i = 0; i < this.gameButtons.length; i += 1) {
+      this.gameButtons[i].disabled = false;
+    }
+
+    this.computerTurnControl = false;
     this.turnControl = true;
   }
 
   addMarker(event) {
-    const target = event.currentTarget;
+    console.log('Player Turn', this.currentTurn);
+    const target = event.currentTarget || event;
     const marker = this.currentTurn;
-
+    console.log(target);
+    console.log(this.turnControl);
     if (this.turnControl === true && !target.innerText) {
+      target.innerText = marker;
+      this.turnControl = false;
+      this.updateBoard();
+    } else if (this.computerTurnControl === true) {
       target.innerText = marker;
       this.turnControl = false;
       this.updateBoard();
@@ -90,6 +103,10 @@ class TicTacToe {
           displayTurn.innerText = 'Your Turn';
         }
       }
+
+      if (this.computerTurnControl === true) {
+        this.playerTurn();
+      }
     }
 
     displayTurn.classList.remove('slide-in');
@@ -100,7 +117,12 @@ class TicTacToe {
       displayTurn.classList.remove('hidden');
     }, 25);
 
-    this.playerTurn();
+    if (this.playerAmount === 'one' && this.currentTurn === this.computerPlayer) {
+      this.computerTurnControl = true;
+      this.computerTurn();
+    } else {
+      this.playerTurn();
+    }
   }
 
   updateBoard() {
@@ -250,6 +272,36 @@ class TicTacToe {
       document.getElementById('player-two-score').innerText = this.playerTwoScore;
     }
   }
+
+  /* *************
+      COMPUTER AI
+     ************* */
+  easyAI() {
+    const generateRandomNumber = function () {
+      return Math.floor(Math.random() * (9)) + 0;
+    };
+
+    let makeMove = true;
+
+    while (makeMove) {
+      const tryPositon = generateRandomNumber();
+
+      if (this.gameButtons[tryPositon].innerText === '') {
+        makeMove = false;
+        this.addMarker(this.gameButtons[tryPositon]);
+      }
+    }
+  }
+
+  computerTurn() {
+    for (let i = 0; i < this.gameButtons.length; i += 1) {
+      this.gameButtons[i].disabled = true;
+    }
+
+    setTimeout(() => {
+      this.easyAI();
+    }, 200);
+  }
 }
 
 const ticTacToe = new TicTacToe();
@@ -312,9 +364,11 @@ const setWhoGoesFirst = function (event) {
   if (event.currentTarget.value === 'x') {
     ticTacToe.playerOne = 'x';
     ticTacToe.playerTwo = 'o';
+    ticTacToe.computerPlayer = 'o';
   } else {
     ticTacToe.playerOne = 'o';
     ticTacToe.playerTwo = 'x';
+    ticTacToe.computerPlayer = 'x';
   }
 
   options.xOrO[0].classList.remove('active');
