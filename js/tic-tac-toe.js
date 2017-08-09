@@ -37,8 +37,13 @@ class TicTacToe {
     this.playerTwoScore = 0;
     this.roundCount = 1;
 
-    this.clearBoard();
-    this.playerTurn();
+    if (this.playerAmount === 'one' && this.playerOne === 'o') {
+      this.computerTurnControl = true;
+      this.computerTurn();
+    } else {
+      this.clearBoard();
+      this.playerTurn();
+    }
   }
 
   playerTurn() {
@@ -300,7 +305,7 @@ class TicTacToe {
 
     setTimeout(() => {
       this.easyAI();
-    }, 200);
+    }, 1000);
   }
 }
 
