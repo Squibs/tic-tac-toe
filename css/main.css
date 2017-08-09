@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
+button { 	font-family: 'Sedgwick Ave', cursive; }
+html, body {
+	font-family: 'Sedgwick Ave', cursive;
+	background-color: #ccc;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+button:focus { outline: 0; }
+
+footer { font-family: 'Righteous', cursive; }
+footer a {
+	text-decoration: none;
+	color: #c0392b;
+}
+
+/* ****************
+    OPENING SCREEN
+   **************** */
+#opening-screen {
+	display: grid;
+	grid-template-columns: repeat(3, 30vw);
+	grid-template-rows: repeat(3, 30vw);
+}
+
+h1 {
+	font-size: 8vw;
+	text-align: center;
+}
+
+.question-one-container {
+	grid-column: 1 / span 3;
+	grid-row: 1;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.question-two-container {
+	grid-column: 1 / span 3;
+	grid-row: 2;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.option-question {
+	font-size: 6vw;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.button-container span {
+	margin: auto 5px auto 5px;
+}
+
+.question-three-container {
+	grid-column: 1 / span 3;
+	grid-row: 3;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+}
+
+#opening-screen button {
+	font-size: 5vw;
+	border: none;
+	margin: 0 15px 0 15px;
+	color: #777;
+	background-color: transparent;
+}
+
+#opening-screen button:hover,
+#opening-screen button:active {
+	color: black;
+}
+
+.active {
+	color: green !important;
+}
+
+/* animations */
+.remove {
+	display: none !important;
+}
+
+.hidden {
+	visibility: hidden !important;
+}
+
+.slide-prep {
+	-webkit-transform: translateX(-100%);
+	transform: translatex(-100%);
+}
+
+.slide-in {
+	-webkit-animation: slide-in 0.5s forwards;
+	animation: slide-in 0.5s forwards;
+}
+
+.slide-out {
+	-webkit-animation: slide-out 0.5s forwards;
+	animation: slide-out 0.5s forwards;
+}
+
+@-webkit-keyframes slide-in {
+	100% { -webkit-transform: translateX(0%); }
+}
+@keyframes slide-in {
+	100% { transform: translateX(0%); }
+}
+
+
+@-webkit-keyframes slide-out {
+	0% { -webkit-transform: translateX(0%); }
+	100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes slide-out {
+	0% { transform: translateX(0%); }
+	100% { transform: translateX(-100%); }
+}
+
+
+/* media queries */
+@media (min-width: 800px) {
+	#opening-screen {
+		grid-template-columns: repeat(3, 14vw);
+		grid-template-rows: repeat(3, 14vw);
+	}
+	
+	h1 {
+		font-size: 3vw;
+	}
+	
+	.option-question {
+		font-size: 2.5vw;
+	}
+	
+	#opening-screen button {
+		font-size: 2vw;
+	}
+}
+
+/* *************
+    GAME SCREEN
+   ************* */
+#game-screen {
+	display: grid;
+	grid-template-columns: repeat(3, 30vw);
+	grid-template-rows: 10vw repeat(3, 30vw) 5vw;
+}
+
+.game-top {
+	grid-column: 1 / span 3;
+	grid-row: 1;
+	display: flex;
+	justify-content: space-between;
+}
+
+.score-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: auto 0 auto 0;
+}
+
+#game-board {
+	grid-column: 1 / span 3;
+	grid-row: 2 / span 3;
+	
+	display: grid;
+	grid-template-columns: repeat(3, 30vw);
+	grid-template-rows: repeat(3, 30vw);
+}
+
+#game-display-turn {
+	grid-column: 1 / span 3;
+	grid-row: 5;
+	display: flex;
+	justify-content: center;
+	margin: auto 0 auto 0;
+}
+
+/* media queries */
+@media (min-width: 800px) {
+	#game-screen {
+		grid-template-columns: repeat(3, 12vw);
+	  grid-template-rows: 3vw repeat(3, 12vw) 2vw;
+	}
+	
+	#game-board {
+		grid-template-columns: repeat(3, 12vw);
+		grid-template-rows: repeat(3, 12vw);
+	}
+}

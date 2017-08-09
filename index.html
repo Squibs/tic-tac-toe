@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Tic-Tac-Toe</title>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<div class="container">
+		<!-- opening screen -->
+		<h1 class="title">Tic-Tac-Toe</h1>
+		<div id="opening-screen">
+			<div class="question-one-container">
+				<span id="opening-question-one" class="option-question">How would you like to play?</span>
+				<div class="button-container">
+					<button class="player-amount" value="one">One Player</button>
+					<button class="player-amount" value="two">Two Player</button>
+				</div>
+			</div>
+			<div class="question-two-container hidden">
+				<span id="opening-question-two" class="option-question">Play as: | Who goes first?</span>
+				<div class="button-container">
+					<button class="play-as" value="x">X</button>
+					<span>or</span>
+					<button class="play-as" value="o">O</button>
+				</div>
+			</div>
+			<div class="question-three-container hidden">
+				<button id="start-game">Start</button>
+			</div>
+		</div>
+
+		<!-- game screen -->
+		<div id="game-screen" class="remove">
+			<div class="game-top">
+				<div class="score-container">
+					<span id="player-one-score">0</span>
+					<span id="player-one">Computer | Player One</span>
+				</div>
+				<div class="score-container">
+					<span id="player-two-score">0</span>
+					<span id="player-two">Computer | Player One | Player Two</span>
+				</div>
+				<button id="reset-button">Reset</button>
+			</div>
+			<div id="game-board">
+				<button id="game-button-0" class="game-button"></button>
+				<button id="game-button-1" class="game-button"></button>
+				<button id="game-button-2" class="game-button"></button>
+				
+				<button id="game-button-3" class="game-button"></button>
+				<button id="game-button-4" class="game-button"></button>
+				<button id="game-button-5" class="game-button"></button>
+
+				<button id="game-button-6" class="game-button"></button>
+				<button id="game-button-7" class="game-button"></button>
+				<button id="game-button-8" class="game-button"></button>
+			</div>
+			<span id="game-display-turn">Computer's Turn | Your Turn | Player One's Turn | Player Two's Turn</span>
+		</div>
+	</div>
+
+	<footer><p>Designed & Coded by <a href="https://squibs.github.io/">Zachary Holman</a></p></footer>
+	<script src="js/tic-tac-toe.js"></script>
+</body>
+</html>
