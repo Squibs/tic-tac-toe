@@ -247,6 +247,8 @@ class TicTacToe {
     document.getElementById('game-board').appendChild(winner);
 
     setTimeout(() => {
+      this.clearBoard();
+      document.getElementById('game-display-turn').innerText = '';
       winner.classList.add('slide-in');
       winner.classList.remove('hidden');
     }, 5);
@@ -282,6 +284,8 @@ class TicTacToe {
     document.getElementById('game-board').appendChild(tie);
 
     setTimeout(() => {
+      this.clearBoard();
+      document.getElementById('game-display-turn').innerText = '';
       tie.classList.add('slide-in');
       tie.classList.remove('hidden');
     }, 5);
