@@ -134,8 +134,8 @@ h1 {
 /* media queries */
 @media (min-width: 800px) {
 	#opening-screen {
-		grid-template-columns: repeat(3, 14vw);
-		grid-template-rows: repeat(3, 14vw);
+		grid-template-columns: repeat(3, 13vw);
+		grid-template-rows: repeat(3, 13vw);
 	}
 	
 	h1 {
@@ -195,12 +195,12 @@ h1 {
 /* media queries */
 @media (min-width: 800px) {
 	#game-screen {
-		grid-template-columns: repeat(3, 12vw);
-	  grid-template-rows: 3vw repeat(3, 12vw) 2vw;
+		grid-template-columns: repeat(3, 11vw);
+		grid-template-rows: 4vw repeat(3, 11vw) 2vw;
 	}
 	
 	#game-board {
-		grid-template-columns: repeat(3, 12vw);
-		grid-template-rows: repeat(3, 12vw);
+		grid-template-columns: repeat(3, 11vw);
+		grid-template-rows: repeat(3, 11vw);
 	}
 }

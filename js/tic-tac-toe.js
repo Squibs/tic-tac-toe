@@ -56,11 +56,9 @@ class TicTacToe {
   }
 
   addMarker(event) {
-    console.log('Player Turn', this.currentTurn);
     const target = event.currentTarget || event;
     const marker = this.currentTurn;
-    console.log(target);
-    console.log(this.turnControl);
+
     if (this.turnControl === true && !target.innerText) {
       target.innerText = marker;
       this.turnControl = false;
@@ -187,7 +185,8 @@ class TicTacToe {
     if (this.winner === '') {
       this.checkForTies();
     } else {
-      this.newRound();
+      this.displayWinner();
+      // this.newRound();
     }
   }
 
@@ -201,15 +200,79 @@ class TicTacToe {
     }
   }
 
+  displayWinner() {
+    const winner = document.createElement('div');
+
+    if (this.playerAmount === 'one') {
+      if (this.playerOne === 'x') {
+        if (this.winner === 'x') {
+          winner.innerText = 'You Win!';
+        } else {
+          winner.innerText = 'Computer Wins!';
+        }
+      } else if (this.playerOne === 'o') {
+        if (this.winner === 'o') {
+          winner.innerText = 'You Win!';
+        } else {
+          winner.innerText = 'Computer Wins!';
+        }
+      }
+    } else if (this.playerAmount === 'two') {
+      if (this.playerOne === 'x') {
+        if (this.winner === 'x') {
+          winner.innerText = 'Player One Wins!';
+        } else {
+          winner.innerText = 'Player Two Wins!';
+        }
+      } else if (this.playerOne === 'o') {
+        if (this.winner === 'o') {
+          winner.innerText = 'Player One Wins!';
+        } else {
+          winner.innerText = 'Player Two Wins!';
+        }
+      }
+    }
+
+    winner.id = 'winner-text';
+    winner.style.position = 'absolute';
+    winner.style.width = '100%';
+    winner.style.top = '47%';
+    winner.style.textAlign = 'center';
+    winner.style.zIndex = '10';
+    winner.style.fontSize = '3em';
+
+    winner.classList.add('slide-prep');
+    winner.classList.add('hidden');
+
+    document.getElementById('game-board').appendChild(winner);
+
+    setTimeout(() => {
+      winner.classList.add('slide-in');
+      winner.classList.remove('hidden');
+    }, 5);
+
+    setTimeout(() => {
+      winner.classList.add('slide-out');
+    }, 1500);
+
+    setTimeout(() => {
+      document.getElementById('winner-text').remove();
+    }, 1800);
+
+    setTimeout(() => {
+      this.newRound();
+    }, 2000);
+  }
+
   displayTie() {
     const tie = document.createElement('div');
 
     tie.innerText = 'Tie!';
-    tie.id = 'remove-me';
+    tie.id = 'tie-text';
     tie.style.position = 'absolute';
-    tie.style.width = 'calc(100vw + 300px)';
+    tie.style.width = '100%';
     tie.style.top = '47%';
-    tie.style.left = '44%';
+    tie.style.textAlign = 'center';
     tie.style.zIndex = '10';
     tie.style.fontSize = '4em';
 
@@ -228,10 +291,12 @@ class TicTacToe {
     }, 1500);
 
     setTimeout(() => {
-      document.getElementById('remove-me').remove();
-    }, 2000);
+      document.getElementById('tie-text').remove();
+    }, 1800);
 
-    this.newRound();
+    setTimeout(() => {
+      this.newRound();
+    }, 2000);
   }
 
   newRound() {
