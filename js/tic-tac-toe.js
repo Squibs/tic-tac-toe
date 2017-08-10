@@ -7,7 +7,7 @@ class TicTacToe {
     this.currentTurn = 'x';
     this.turnControl = false;
     this.computerTurnControl = false;
-    this.computerDifficulty = '';
+    this.computerDifficulty = 'easy';
     this.winner = '';
     this.board = [];
     this.playerOneScore = 0;
@@ -382,9 +382,15 @@ class TicTacToe {
       this.gameButtons[i].disabled = true;
     }
 
-    setTimeout(() => {
-      this.easyAI();
-    }, 1000);
+    if (this.computerDifficulty === 'easy') {
+      setTimeout(() => {
+        this.easyAI();
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        this.hardAI();
+      }, 1000);
+    }
   }
 }
 
@@ -535,3 +541,10 @@ document.getElementById('reset-button').addEventListener('click', () => {
   options.gameScreen.classList.add('remove');
   options.openingScreen.classList.remove('remove');
 });
+
+
+/* ******************************************************
+    TODO:
+      - Implement harder AI
+        + include difficulty choice in 'one-player' mode
+   ****************************************************** */
