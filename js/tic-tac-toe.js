@@ -247,7 +247,9 @@ class TicTacToe {
     document.getElementById('game-board').appendChild(winner);
 
     setTimeout(() => {
-      this.clearBoard();
+      for (let i = 0; i < this.gameButtons.length; i += 1) {
+        this.gameButtons[i].style.color = '#ccc';
+      }
       document.getElementById('game-display-turn').innerText = '';
       winner.classList.add('slide-in');
       winner.classList.remove('hidden');
@@ -262,6 +264,9 @@ class TicTacToe {
     }, 1800);
 
     setTimeout(() => {
+      for (let i = 0; i < this.gameButtons.length; i += 1) {
+        this.gameButtons[i].style.color = 'black';
+      }
       this.newRound();
     }, 2000);
   }
@@ -284,7 +289,9 @@ class TicTacToe {
     document.getElementById('game-board').appendChild(tie);
 
     setTimeout(() => {
-      this.clearBoard();
+      for (let i = 0; i < this.gameButtons.length; i += 1) {
+        this.gameButtons[i].style.color = '#ccc';
+      }
       document.getElementById('game-display-turn').innerText = '';
       tie.classList.add('slide-in');
       tie.classList.remove('hidden');
@@ -299,6 +306,9 @@ class TicTacToe {
     }, 1800);
 
     setTimeout(() => {
+      for (let i = 0; i < this.gameButtons.length; i += 1) {
+        this.gameButtons[i].style.color = 'black';
+      }
       this.newRound();
     }, 2000);
   }

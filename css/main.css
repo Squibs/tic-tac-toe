@@ -7,6 +7,8 @@ html, body {
 	background-color: #ccc;
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	align-content: center;
 	flex-direction: column;
 	width: 100%;
 	overflow-x: hidden;
@@ -204,44 +206,61 @@ h1 {
 	background-color: #ccc;
 	width: 100%;
 	height: 100%;
-	font-size: 4em;
+	font-size: 3em;
 	border: none;
+	text-align: center;
+	margin: auto;
 }
 
 #game-button-0 {
-	border-right: 3px solid black !important;
-	border-bottom: 3px solid black !important;
+	border-right: 1.5px solid black !important;
+	border-bottom: 1.5px solid black !important;
 }
 
 #game-button-1 {
-	border-right: 3px solid black !important;
-	border-bottom: 3px solid black !important;
+	border-right: 1.5px solid black !important;
+	border-bottom: 1.5px solid black !important;
+	border-left: 1.5px solid black !important;
 }
 
 #game-button-2 {
-	border-bottom: 3px solid black !important;
+	border-bottom: 1.5px solid black !important;
+	border-left: 1.5px solid black !important;
 }
 
 #game-button-3 {
-	border-right: 3px solid black !important;
-	border-bottom: 3px solid black !important;
+	border-top: 1.5px solid black !important;
+	border-right: 1.5px solid black !important;
+	border-bottom: 1.5px solid black !important;
 }
 
 #game-button-4 {
-	border-right: 3px solid black !important;
-	border-bottom: 3px solid black !important;
+	border-top: 1.5px solid black !important;
+	border-right: 1.5px solid black !important;
+	border-bottom: 1.5px solid black !important;
+	border-left: 1.5px solid black !important;
 }
 
 #game-button-5 {
-	border-bottom: 3px solid black !important;
+	border-top: 1.5px solid black !important;
+	border-bottom: 1.5px solid black !important;
+	border-left: 1.5px solid black !important;
 }
 
 #game-button-6 {
-	border-right: 3px solid black !important;
+	border-top: 1.5px solid black !important;
+	border-right: 1.5px solid black !important;
 }
 
 #game-button-7 {
-	border-right: 3px solid black !important;
+	border-top: 1.5px solid black !important;
+	border-right: 1.5px solid black !important;
+	border-left: 1.5px solid black !important;
+}
+
+#game-button-8 {
+	border-top: 1.5px solid black !important;
+	border-left: 1.5px solid black !important;
 }
 
 /* media queries */
