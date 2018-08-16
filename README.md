@@ -1,7 +1,7 @@
 # Tic-Tac-Toe
-A tic-tac-toe game I have created while going through the advanced front end development project challenges at https://freeCodeCamp.com
+A tic-tac-toe game I have created while going through the advanced front end development project challenges at www.freeCodeCamp.org
 
-## [Front End Development Projects](https://github.com/Squibs/freeCodeCamp/tree/master/Front%20End%20Development%20Certification#tic-tac-toe) (Go Back)
+## [Front End Development Projects](https://github.com/Squibs/freeCodeCamp#freecodecamp) (Go Back to My freeCodeCamp Repository)
 
 <a href="https://squibs.github.io/tic-tac-toe/" target="_blank"><img src="img/screenshot-tic-tac-toe.png" height="600" alt="Screenshot of my tic-tac-toe game project / website"/></a>
 
